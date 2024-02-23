@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- Header-->
-<header class="bg-dark py-5">
+<header class="bg-dark py-2">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Login</h1>
@@ -14,21 +14,42 @@
 </header>
 
 
-    
+
 <div class = 'container'>
-    
+
     <div class="row">
         <center>
                 <div class="col-8">
-                    FORM
+                <form class = 'mb-5'>
+                      <div class="mb-3">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                      </div>
+
+                      <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                      </div>
+                      <button type="submit" class="btn btn-secondary">Login</button>
+                    </form>
                     <br>
                     <br>
-        
-                    
+
+
                 </div>
         </center>
     </div>
 </div>
+    <footer class="bg-dark text-white text-center py-1 mt-5"> <!-- Added mt-5 for margin-top -->
+    <div class="container">
+        <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+    </div>
+</footer>
 
 <!-- ... (remaining code) ... -->
 
