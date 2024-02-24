@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product, Category
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import  SignUpForm
+from .forms import SignUpForm
 from django import forms
 
 
@@ -54,7 +54,7 @@ def register_user(request):
             form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-            user = authenticate(username = username, password = password)
+            user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, 'Registration is successful, welcome ')
             return redirect('home')
@@ -63,4 +63,23 @@ def register_user(request):
             messages.success(request, 'Whoops problem registering, please try again')
             return redirect('register')
     else:
-        return render(request, 'register.html', {'form':form})
+        return render(request, 'register.html', {'form': form})
+
+
+def product(request, pk):
+    product = Product.objects.get(id=pk)
+    return render(request, 'product.html', {'product': product})
+
+
+def category(request, foo):
+    # replace foo with spaces
+    foo = foo.replace('-', ' ')
+    # grab category from url
+    try:
+        # look up cat
+        category = Category.objects.get(name=foo)
+        products = Product.objects.filter(category=category)
+        return render(request, 'category.html', {'products': products, 'category': category})
+    except:
+        messages.success(request, 'That category doesnt exist')
+        return redirect('home')
